@@ -41,6 +41,9 @@ $(document).ready(function() {
   });
 
   var chart = new Highcharts.Chart({
+    title: {
+      text: 'Campaign Contributions'
+    },
     chart: {
       renderTo: 'contributions_chart',
       defaultSeriesType: 'scatter'
@@ -60,9 +63,15 @@ $(document).ready(function() {
       }
     },
     xAxis: {
+      title: {
+        text: '# of contributions'
+      },
       min: 0
     },
     yAxis: {
+      title: {
+        text: 'total contributed ($)'
+      },
       min: 0
     }
   });
