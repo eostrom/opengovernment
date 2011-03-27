@@ -10,13 +10,28 @@ $(document).ready(function() {
    return s + (j ? i.substr(0, j) + t : "") +
         i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) +
         (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
- };
+  };
 
   var points = $.map(contributions, function(person) {
+    var color = {
+      Democrat: '#0000FF',
+      Republican: '#FF0000',
+      Multiple: '#CC00CC'
+    }[person.party] || '#888888'
+
     return {
       x: person.contributions_count,
       y: person.contributions_sum,
       name: person.first_name + ' ' + person.last_name,
+      color: color,
+      marker: {
+        fillColor: color,
+        states: {
+          hover: {
+            fillColor: color
+          }
+        }
+      },
       events: {
         click: function() {
           window.location = person.permalink;
