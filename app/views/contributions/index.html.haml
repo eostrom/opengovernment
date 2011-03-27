@@ -1,0 +1,6 @@
+#contributions_chart{:style => 'width: 600px; height: 600px;'}
+
+:javascript
+  var points = #{@people.map {|p| [p.contributions_count.to_i, p.contributions_sum.to_i]}.to_json};
+
+= javascript_include_tag 'charts/highcharts/highcharts.js', 'charts/charts'
