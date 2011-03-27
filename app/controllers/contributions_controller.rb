@@ -1,10 +1,10 @@
 class ContributionsController < SubdomainController
   def index
     people_columns = [
-      :id, :first_name, :last_name
+      :id, :first_name, :last_name, :suffix
     ].map { |attr| "people.#{attr}" }.join(', ')
     aggregations = [
-      :count, :sum
+      :count, :sum, :avg
     ].map { |aggr| "#{aggr}(contributions.amount) AS contributions_#{aggr}" }.
       join(', ')
     party_column = <<-EOF

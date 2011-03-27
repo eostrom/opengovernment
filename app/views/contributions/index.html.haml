@@ -1,6 +1,6 @@
 #contributions_chart{:style => 'width: 600px; height: 600px;'}
 
 :javascript
-  var contributions = #{@people.to_json};
+  var contributions = #{@people.to_json(:methods => [:full_name, :permalink])};
 
 = javascript_include_tag 'charts/highcharts/highcharts.js', 'charts/charts'

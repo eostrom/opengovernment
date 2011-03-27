@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  var formatMoney = function(n, c, d, t){
-    var c = isNaN(c = Math.abs(c)) ? 2 : c,
+  var formatNumber = function(n, c, d, t){
+    var c = isNaN(c = Math.abs(c)) ? 0 : c,
       d = d == undefined ? "." : d,
       t = t == undefined ? "," : t,
       s = n < 0 ? "-" : "",
@@ -20,9 +20,9 @@ $(document).ready(function() {
     }[person.party] || '#888888'
 
     return {
-      x: person.contributions_count,
-      y: person.contributions_sum,
-      name: person.first_name + ' ' + person.last_name,
+      x: person.contributions_sum,
+      y: person.contributions_avg,
+      name: person.full_name,
       color: color,
       marker: {
         fillColor: color,
@@ -57,20 +57,22 @@ $(document).ready(function() {
     tooltip: {
       formatter: function(i) {
         var point = this.point;
+        var count = Math.round(point.x / point.y);
 
         return '<b>' + point.name + '</b>: ' +
-          point.x + ' contributions, $' + formatMoney(point.y, 0);
+          '$' + formatNumber(point.x, 0) +
+          ' from ' + formatNumber(count) + ' contributors';
       }
     },
     xAxis: {
       title: {
-        text: '# of contributions'
+        text: 'total contributed ($)'
       },
       min: 0
     },
     yAxis: {
       title: {
-        text: 'total contributed ($)'
+        text: 'average contribution ($)'
       },
       min: 0
     }
