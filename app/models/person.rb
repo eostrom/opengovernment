@@ -93,6 +93,9 @@ class Person < ActiveRecord::Base
     [first_name, last_name].join(' ').squeeze(' ').strip + (suffix? ? ', ' + suffix : '')
   end
 
+  def contributions_count; self[:contributions_count].try(:to_i); end
+  def contributions_sum; self[:contributions_sum].try(:to_i); end
+
   def gender_fm
     case gender
       when "M"
