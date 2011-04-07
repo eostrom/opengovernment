@@ -28,7 +28,10 @@ OpenGov::Application.routes.draw do
 
     resources :sigs, :only => [:index, :show]
     resources :money_trails, :only => [:index, :show], :path => 'money_trail'
-    resources :contributions
+    resources :contributions do
+      # TODO: more sensible routing
+      collection { get :person }
+    end
 
 #    match '/bills', :to => 'bills#index', :as => 'bills'
 #    match '/bills/upper', :to => 'bills#upper', :as => 'bills_upper'

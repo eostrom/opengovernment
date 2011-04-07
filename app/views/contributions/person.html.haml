@@ -1,0 +1,34 @@
+.photo= photo_for(@person)
+
+// FIXME: header weights are backwards
+%h3
+  = link_to @person.official_name, @person
+  .subhead
+    #{@person.try(:party)}, #{@person.try(:district_name)}
+    - if @person.addresses.in_district.any?
+      (#{@person.addresses.in_district.map(&:city).join(', ')})
+
+%h2 Contributing Industries
+%table.contributions{:style => 'font-size: 90%;'}
+  - Industry.aggregates_for_person(@person).order('amount DESC').first(5).each do |industry|
+    %tr
+      %td{:style => 'width: 5em; min-width: 5em; text-align: right;'}
+        $#{industry.amount}
+      %td{:style => 'width: 10em;'}
+        = industry.name
+
+-# %table.contributions{:style => 'font-size: 90%;'}
+-#   - @person.contributions.first(5).each do |contribution|
+-#     %tr
+-#       %td{:style => 'width: 5em; min-width: 5em;'}
+-#         $#{contribution.amount}
+-#       %td{:style => 'width: 10em;'}
+-#         = contribution.industry.name
+
+-# %ul.contributions{:style => 'font-size: 90%;'}
+-#   - @person.contributions.first(5).each do |contribution|
+-#     %li
+-#       %span{:style => 'display: inline-block; width: 5em;'}
+-#         $#{contribution.amount}
+-#       %span{:style => 'display: inline-block; width: 10em;'}
+-#         = contribution.industry.name

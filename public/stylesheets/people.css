@@ -152,3 +152,12 @@ ul.people_mugs li {
 ul.chamber_tabs li a {
   height: 36px;
 }
+
+body.contributions #contributions_chart {
+  float: left;
+}
+
+body.contributions #person {
+  float: left;
+  width: 200px;
+}

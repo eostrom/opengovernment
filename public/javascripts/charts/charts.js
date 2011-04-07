@@ -33,6 +33,12 @@ $(document).ready(function() {
         }
       },
       events: {
+        mouseOver: function(event) {
+          // $('#person').html(
+          //   $('<h2></h2>').html(person.full_name));
+          $.get('/contributions/person', {person_id: person.id},
+                function(data) { $('#person').html(data); });
+        },
         click: function() {
           window.location = person.permalink;
         }

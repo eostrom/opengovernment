@@ -1,4 +1,6 @@
-#contributions_chart{:style => 'width: 600px; height: 600px;'}
+#contributions_chart{:style => 'width: 500px; height: 500px;'}
+
+#person
 
 :javascript
   var contributions = #{@people.to_json(:methods => [:full_name, :permalink])};
