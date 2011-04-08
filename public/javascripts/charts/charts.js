@@ -12,7 +12,17 @@ $(document).ready(function() {
         (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
   };
 
-  var points = $.map(contributions, function(person) {
+  var points = $.map(people_json, function(person) {
+    var cities = $.map(person.addresses, function(address) {
+      if (address.votesmart_type == 'District') {
+        return address.city;
+      }
+    }).sort();
+    if (!cities[0]) { cities.shift(); }
+    if (cities.length > 0) { 
+      person.district_address_cities = cities.join(', '); 
+    }
+
     var color = {
       Democrat: '#0000FF',
       Republican: '#FF0000',
@@ -34,10 +44,11 @@ $(document).ready(function() {
       },
       events: {
         mouseOver: function(event) {
-          // $('#person').html(
-          //   $('<h2></h2>').html(person.full_name));
-          $.get('/contributions/person', {person_id: person.id},
-                function(data) { $('#person').html(data); });
+          $('#person').html(
+            JST['person']({
+              person: person
+            })
+          );
         },
         click: function() {
           window.location = person.permalink;

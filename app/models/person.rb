@@ -7,7 +7,8 @@ class Person < ActiveRecord::Base
   # and http://www.imagemagick.org/script/command-line-processing.php#geometry
   # for geometry options
   has_attached_file :photo, :styles => {:full => '90', :thumb => '50x50#'}, :convert_options => { :all => '-gravity north'}
-
+  def photo_url_pattern; photo.url(':style'); end
+  
   acts_as_noteworthy :with => [:official_name]
 
   validates_inclusion_of :gender, :in => %w(M F), :allow_blank => true

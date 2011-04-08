@@ -3,6 +3,6 @@
 #person
 
 :javascript
-  var contributions = #{@people.to_json(:methods => [:full_name, :permalink])};
+  var people_json = #{@people_json};
 
-= javascript_include_tag 'charts/highcharts/highcharts.js', 'charts/charts'
+= include_javascripts :charts

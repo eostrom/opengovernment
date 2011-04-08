@@ -1,0 +1,21 @@
+<div class="photo">
+  <% if (person.photo_url_pattern) { %>
+    <img src="<%= person.photo_url_pattern.replace(':style', 'full') %>"/>
+  <% } %>
+</div>
+
+<h2>
+  <%= person.official_name %>
+  <div class="subhead">
+    <%= person.party %>, <%= person.district_name %>
+  </div>
+  <div class="subhead">
+    <%= person.district_address_cities %>
+  </div>
+</h2>
+
+<h3>Contributing Industries</h3>
+
+<table class="contributions">
+  # TODO: industries
+</table>

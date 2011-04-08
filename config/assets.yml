@@ -70,3 +70,10 @@ javascripts:
 
   templates:
     - public/javascripts/DV/views/*.jst
+
+  charts:
+    # TODO: maybe don't use the underscore from DV
+    - public/javascripts/DV/vendor/underscore.js
+    - public/javascripts/charts/highcharts/highcharts.js
+    - public/javascripts/charts/*.js
+    - public/javascripts/charts/views/*.jst
