@@ -161,6 +161,7 @@ To import the full dataset, run `rake install`.
 
   * Rake install will set up the database, install the PostGIS SQL components, install fixtures, and download and install datasets.
   * You can provide a comma-separated list of state abbreviations in a LOAD_STATES env variable to rake install. Otherwise, the default "loadable" states will be loaded, as specified in the lib/tasks/fixtures/states.yml file.
+  * To add a new state (e.g., Hawaii) to an existing database, run `rake LOAD_STATES=HI fetch:all load:all`.
 
 ### OR import test data right away
 
