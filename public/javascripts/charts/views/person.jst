@@ -20,7 +20,7 @@
   <% $.each(person.contributing_industries.slice(0,5),
        function(i, industry) { %>
     <tr>
-      <td class="amount">$<%= industry.amount %></td>
+      <td class="amount">$<%= Highcharts.numberFormat(industry.amount, 0) %></td>
       <td class="name"><%= industry.name %></td>
     </tr>
   <% }); %>
