@@ -12,6 +12,18 @@ $(document).ready(function() {
         (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
   };
 
+  var unique = function(sortedArray) {
+    var previous;
+
+    return jQuery.grep(sortedArray,
+                       function(current) {
+                         if (current == previous)
+                           return false;
+                         previous = current;
+                         return true;
+                       });
+  };
+
   var points = $.map(people_json, function(person) {
     var cities = $.map(person.addresses, function(address) {
       if (address.votesmart_type == 'District') {
@@ -20,7 +32,7 @@ $(document).ready(function() {
     }).sort();
     if (!cities[0]) { cities.shift(); }
     if (cities.length > 0) { 
-      person.district_address_cities = cities.join(', '); 
+      person.district_address_cities = unique(cities).join(', '); 
     }
 
     var color = {
