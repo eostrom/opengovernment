@@ -23,7 +23,7 @@ class ContributionsController < SubdomainController
       :include => :addresses,
       :methods => [
         :full_name, :permalink, :official_name, :district_name,
-        :photo_url_pattern
+        :photo_url_pattern, :contributing_industries
       ])
   end
 end

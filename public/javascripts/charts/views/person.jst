@@ -17,5 +17,11 @@
 <h3>Contributing Industries</h3>
 
 <table class="contributions">
-  # TODO: industries
+  <% $.each(person.contributing_industries.slice(0,5),
+       function(i, industry) { %>
+    <tr>
+      <td class="amount">$<%= industry.amount %></td>
+      <td class="name"><%= industry.name %></td>
+    </tr>
+  <% }); %>
 </table>

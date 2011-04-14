@@ -159,5 +159,20 @@ body.contributions #contributions_chart {
 
 body.contributions #person {
   float: left;
-  width: 200px;
+  width: 180px;
+  padding: 9px 0 0 20px;
+}
+
+body.contributions #person .contributions {
+  font-size: 90%;
+}
+
+body.contributions #person .contributions .amount {
+  width: 4em;
+  min-width: 4em;
+  text-align: right;
+}
+
+body.contributions #person .contributions .name {
+  width: 10em;
 }

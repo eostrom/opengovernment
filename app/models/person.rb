@@ -155,6 +155,10 @@ class Person < ActiveRecord::Base
    state_id ? State.find(state_id) : nil
   end
 
+  def contributing_industries
+    Industry.aggregates_for_person(self).order('amount DESC')
+  end
+    
   def current_sponsorship_vitals
     latest_session_id = roles.first.try(:session_id)
     sessions = Session.where(['parent_id = ? or id = ?', latest_session_id, latest_session_id])
