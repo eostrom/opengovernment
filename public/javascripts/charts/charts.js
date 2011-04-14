@@ -59,13 +59,15 @@ $(document).ready(function() {
 
   var chart = new Highcharts.Chart({
     title: {
-      text: 'Campaign Contributions'
+      text: null
     },
     chart: {
       renderTo: 'contributions_chart',
       defaultSeriesType: 'scatter'
     },
-
+    legend: {
+      enabled: false
+    },
     series: [
       {
         data: points
