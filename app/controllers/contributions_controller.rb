@@ -1,5 +1,14 @@
 class ContributionsController < SubdomainController
   def index
+    respond_to do |format|
+      format.html
+      format.json { render :json => index_data }
+    end
+  end
+
+  private
+
+  def index_data
     people_columns = [
       :id, :first_name, :middle_name, :last_name, :suffix, :photo_file_name
     ].map { |attr| "people.#{attr}" }.join(', ')
@@ -19,7 +28,7 @@ class ContributionsController < SubdomainController
       includes([:chamber, :addresses]).
       select("#{people_columns}, #{extra_people_columns}, #{aggregations}")
 
-    @people_json = @people.to_json(
+    @people.to_json(
       :include => :addresses,
       :methods => [
         :full_name, :permalink, :official_name, :district_name,

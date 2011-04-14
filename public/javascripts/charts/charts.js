@@ -11,7 +11,12 @@ $(document).ready(function() {
                        });
   };
 
-  var points = $.map(people_json, function(person) {
+  $.getJSON(window.location.toString() + '.json', function(people) {
+    chart.hideLoading();
+    chart.addSeries({data: $.map(people, personPoint)});
+  });
+
+  function personPoint(person) {
     var cities = $.map(person.addresses, function(address) {
       if (address.votesmart_type == 'District') {
         return address.city;
@@ -54,7 +59,7 @@ $(document).ready(function() {
         }
       }
     };
-  });
+  };
 
   var chart = new Highcharts.Chart({
     title: {
@@ -67,11 +72,6 @@ $(document).ready(function() {
     legend: {
       enabled: false
     },
-    series: [
-      {
-        data: points
-      }
-    ],
     tooltip: {
       formatter: function(i) {
         var point = this.point;
@@ -95,4 +95,6 @@ $(document).ready(function() {
       min: 0
     }
   });
+
+  chart.showLoading();
 });
